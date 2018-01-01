@@ -1,6 +1,7 @@
 import LocalStream from '../streams/LocalStream';
 import Settings from "./Settings";
 import Keychain from "./Keychain";
+import {Message} from "./Message";
 
 export class ScatterData {
 	meta:Meta;
@@ -31,7 +32,10 @@ export class ScatterData {
 
     static update(scatter){
         return new Promise((resolve, reject) => {
-            LocalStream.send({msg:'update', scatter}).then(response => {
+
+        	//TODO: This is dangerous. The constant could change internally in scatter
+			// and this would not get updated [InternalMessageTypes.UPDATE]
+            LocalStream.send(Message.payload('update', scatter)).then(response => {
                 resolve(response);
             })
 		})

@@ -22,6 +22,19 @@ export class Message {
 		return p;
 	}
 
+	public static payload(type:string, payload:any){
+		let p = this.placeholder();
+		p.type = type;
+		p.payload = payload;
+		return p;
+	}
+
+	public static signal(type:string){
+		let p = this.placeholder();
+		p.type = type;
+		return p;
+	}
+
 	public static fromJson(json:any){ return Object.assign(new Message("",{},"", null), json); }
 	public respond(payload:any){ return new Message(this.type, payload, this.resolverId); }
 }
