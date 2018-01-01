@@ -1,0 +1,25 @@
+{
+  "name": "scattermodels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/scattermodels.min.js",
+  "scripts": {
+    "webpack": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chrome": "0.0.57",
+    "crypto-js": "^3.1.9-1",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "uglifyjs-webpack-plugin": "^1.1.5",
+    "webpack": "^3.10.0"
+  }
+}
