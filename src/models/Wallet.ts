@@ -59,6 +59,13 @@ export class Wallet {
 	getDefaultKeyPair(){ return (this.defaultPublicKey.length) ? this.keyPairs.filter(x => x.publicKey === this.defaultPublicKey)[0] : this.keyPairs[0]; }
 	setDefaultKeyPair(keyPair){ this.defaultPublicKey = keyPair.publicKey; }
 	hasKey(publicKey){ return this.keyPairs.filter(x => x.publicKey === publicKey).length > 0 }
+	hasAccount(accounts){
+		let acc = accounts.map(z => `${z.name}::${z.permission}`);
+
+		return this.keyPairs.filter(x => {
+			return x.accounts.map(z => `${z.name}::${z.authority}`).filter(z => acc.indexOf(z) > -1).length
+		}).length
+	}
 	prepareForSaving(){
 		let removedKeys = this.keyPairs.filter(x => x.removed).map(x => x.publicKey);
 		this.keyPairs = this.keyPairs.filter(x => !x.removed);
@@ -68,7 +75,7 @@ export class Wallet {
 
 	//TODO: Change back to waterfall
 	encrypt(passkey){
-		this.keyPairs.map(x => x.privateKey = AES.encrypt(x.privateKey, passkey))
+		this.keyPairs.map(x => (x.privateKey.length < 80) ? x.privateKey = AES.encrypt(x.privateKey, passkey) : x.privateKey)
 		// this.keyPairs.map(x => x.privateKey = WaterfallEncryption.encrypt(x.privateKey, passkey, AES.encrypt))
         this.editing = false;
 	}

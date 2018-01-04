@@ -16,11 +16,12 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     resolve: {
-        extensions:['.ts', '.js']
+        extensions:['.ts', '.js', 'json'],
+        modules: [path.resolve(__dirname), "node_modules"]
     },
     module: {
         loaders: [
-            { test: /\.ts$/, loader: 'ts-loader' }
+            { test: /\.ts$/, loader: 'ts-loader',exclude: /node_modules/ }
         ]
     },
     plugins: [

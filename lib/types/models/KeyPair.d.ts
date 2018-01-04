@@ -1,8 +1,10 @@
 import KeyPairAccount from "./KeyPairAccount";
+import { Network } from "./Network";
 export declare class KeyPair {
     publicKey: string;
     privateKey: string;
     accounts: Array<KeyPairAccount>;
+    network: Network;
     removed: boolean;
     constructor();
     static placeholder(): KeyPair;

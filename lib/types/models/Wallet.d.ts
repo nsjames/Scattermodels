@@ -18,6 +18,7 @@ export declare class Wallet {
     getDefaultKeyPair(): KeyPair;
     setDefaultKeyPair(keyPair: any): void;
     hasKey(publicKey: any): boolean;
+    hasAccount(accounts: any): number;
     prepareForSaving(): void;
     encrypt(passkey: any): void;
     decrypt(passkey: any): void;

@@ -3,6 +3,6 @@ export declare const NetworkMessageTypes: {
     REQUEST_PERMISSIONS: string;
     PROVE_IDENTITY: string;
     REQUEST_SIGNATURE: string;
-    GET_BALANCE: string;
+    SIGN_WITH_ANY: string;
 };
 export default NetworkMessageTypes;

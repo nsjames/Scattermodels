@@ -1,15 +1,18 @@
 import KeyPairAccount from "./KeyPairAccount";
+import {Network} from "./Network";
 
 export class KeyPair {
 	publicKey:string;
 	privateKey:string;
 	accounts:Array<KeyPairAccount>;
+	network:Network;
 	removed:boolean;
 	
 	constructor(){
         this.publicKey = null;
         this.privateKey = null;
         this.accounts = null;
+        this.network = null;
 
         this.removed = null;
 	}
@@ -19,11 +22,14 @@ export class KeyPair {
 		p.publicKey = '';
 		p.privateKey = '';
 		p.accounts = [];
+		p.network = Network.placeholder();
 		return p;
 	}
 
 	static fromJson(json) {
-		return Object.assign(this.placeholder(), json);
+		let p = Object.assign(this.placeholder(), json);
+		if(json.hasOwnProperty('network')) p.network = Network.fromJson(json.network);
+		return p;
 	}
 
 	static fromPair(priv, pub) {
