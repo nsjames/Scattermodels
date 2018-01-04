@@ -1,6 +1,7 @@
 import {Network} from "./Network";
+import {NetworkMessageTypes} from "./NetworkMessageTypes";
 
-export class Message {
+export class NetworkMessage {
 	type:string;
 	payload:any;
 	resolverId:string;
@@ -13,8 +14,8 @@ export class Message {
 		this.network = network;
 	}
 
-	public static placeholder():Message {
-		let p = new Message();
+	public static placeholder():NetworkMessage {
+		let p = new NetworkMessage();
 		p.type = '';
 		p.payload = {};
 		p.resolverId = '';
@@ -35,7 +36,8 @@ export class Message {
 		return p;
 	}
 
-	public static fromJson(json:any){ return Object.assign(new Message("",{},"", null), json); }
-	public respond(payload:any){ return new Message(this.type, payload, this.resolverId); }
+	public static fromJson(json:any){ return Object.assign(new NetworkMessage("",{},"", null), json); }
+	public respond(payload:any){ return new NetworkMessage(this.type, payload, this.resolverId); }
+	public error(payload:any){ return new NetworkMessage(NetworkMessageTypes.ERROR, payload, this.resolverId); }
 }
-export default Message;
+export default NetworkMessage;

@@ -7,9 +7,14 @@ export {Network} from './models/Network'
 export {ScatterData} from './models/ScatterData'
 export {Settings} from './models/Settings'
 export {Wallet} from './models/Wallet'
-export {Message} from './models/Message'
-export {MessageTypes} from './models/MessageTypes'
+export {NetworkMessage} from './models/NetworkMessage'
+export {NetworkMessageTypes} from './models/NetworkMessageTypes'
 export {ScatterError} from './models/ScatterError'
+
+export {CurrencyAction} from './models/CurrencyAction';
+export {ContractAuthorization} from './models/ContractAuthorization';
+export {ContractMessage} from './models/ContractMessage';
+export {ContractPermission} from './models/ContractPermission';
 
 export {AES} from './cryptography/AES'
 export {RandomIdGenerator} from './cryptography/RandomIdGenerator'
