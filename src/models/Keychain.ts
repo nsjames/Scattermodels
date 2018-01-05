@@ -24,6 +24,8 @@ export class Keychain {
         } else return jsonOrEncryptedString;
 	}
 
+	static hasUnreclaimedKey(wallets){ return wallets.filter(x => x.find(z => z.reclaimed)).length }
+
 	getOpenWallet(){ return this.wallets.find(x => x.lastOpened) || Wallet.newWallet(); }
 }
 

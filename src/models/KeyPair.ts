@@ -6,6 +6,7 @@ export class KeyPair {
 	privateKey:string;
 	accounts:Array<KeyPairAccount>;
 	network:Network;
+	reclaimed:boolean;
 	removed:boolean;
 	
 	constructor(){
@@ -13,6 +14,7 @@ export class KeyPair {
         this.privateKey = null;
         this.accounts = null;
         this.network = null;
+		this.reclaimed = null;
 
         this.removed = null;
 	}
@@ -23,12 +25,13 @@ export class KeyPair {
 		p.privateKey = '';
 		p.accounts = [];
 		p.network = Network.placeholder();
+		p.reclaimed = false;
 		return p;
 	}
 
 	static fromJson(json) {
 		let p = Object.assign(this.placeholder(), json);
-		if(json.hasOwnProperty('network')) p.network = Network.fromJson(json.network);
+		if(json.hasOwnProperty('network')) p.network = Network.fromJson(json.currentNetwork);
 		return p;
 	}
 

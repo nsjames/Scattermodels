@@ -25,5 +25,3 @@ export {RandomIdGenerator} from './cryptography/RandomIdGenerator'
 export {EncryptedStream} from './streams/EncryptedStream'
 export {LocalStream} from './streams/LocalStream'
 
-export {EOSService} from './services/EOSService'
-

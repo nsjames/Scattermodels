@@ -5,6 +5,7 @@ export declare class Keychain {
     constructor();
     static placeholder(): Keychain;
     static fromJson(jsonOrEncryptedString: any): any;
+    static hasUnreclaimedKey(wallets: any): any;
     getOpenWallet(): Wallet;
 }
 export default Keychain;

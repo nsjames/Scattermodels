@@ -59,6 +59,7 @@ export class Wallet {
 	getDefaultKeyPair(){ return (this.defaultPublicKey.length) ? this.keyPairs.filter(x => x.publicKey === this.defaultPublicKey)[0] : this.keyPairs[0]; }
 	setDefaultKeyPair(keyPair){ this.defaultPublicKey = keyPair.publicKey; }
 	hasKey(publicKey){ return this.keyPairs.filter(x => x.publicKey === publicKey).length > 0 }
+	hasUnreclaimedKey(){ return this.keyPairs.filter(x => !x.reclaimed).length }
 	hasAccount(accounts){
 		let acc = accounts.map(z => `${z.name}::${z.permission}`);
 

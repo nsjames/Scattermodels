@@ -1,27 +1,27 @@
 import Network from "./Network";
 export class Settings {
-	provider:Network;
-	providers:Array<Network>;
+	currentNetwork:Network;
+	networks:Array<Network>;
 	currency:string;
 
 	constructor(){
-        this.provider = null;
-        this.providers = null;
+        this.currentNetwork = null;
+        this.networks = null;
         this.currency = null;
 	}
 
 	static placeholder() {
 		let p = new Settings();
-		p.provider = Network.placeholder();
-		p.providers = [];
+		p.currentNetwork = Network.placeholder();
+		p.networks = [];
 		p.currency = '';
 		return p;
 	}
 
 	static fromJson(json) {
 		let p = Object.assign(this.placeholder(), json);
-		p.provider = Network.fromJson(json.provider);
-		p.providers = json.providers.map(x => Network.fromJson(x));
+		p.currentNetwork = Network.fromJson(json.currentNetwork);
+		p.networks = json.networks.map(x => Network.fromJson(x));
 		return p;
 	}
 }

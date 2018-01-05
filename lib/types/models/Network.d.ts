@@ -7,5 +7,6 @@ export declare class Network {
     static fromJson(json: any): Network;
     static testNet(): Network;
     toEndpoint(): string;
+    clone(): Network;
 }
 export default Network;

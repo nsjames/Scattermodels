@@ -1,7 +1,7 @@
 import Network from "./Network";
 export declare class Settings {
-    provider: Network;
-    providers: Array<Network>;
+    currentNetwork: Network;
+    networks: Array<Network>;
     currency: string;
     constructor();
     static placeholder(): Settings;
