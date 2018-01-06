@@ -4,5 +4,6 @@ export declare class KeyPairAccount {
     constructor();
     static placeholder(): KeyPairAccount;
     static fromJson(json: any): any;
+    print(): string;
 }
 export default KeyPairAccount;

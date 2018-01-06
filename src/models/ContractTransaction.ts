@@ -26,4 +26,20 @@ export class ContractTransaction {
 		p.messages = json.messages.map(x => ContractMessage.fromJson(x));
 		return p;
 	}
+
+	public static replaceScatterProps(transaction, account){
+		// TODO: Move this into a transformer
+		transaction.scope.push(account.name)
+		function morphScatterProps(obj){
+			Object.keys(obj).map(key => {
+				if(obj[key] === '[scatter]') obj[key] = account.name;
+			});
+		}
+		transaction.messages.map(msg => {
+			morphScatterProps(msg.data);
+			msg.authorization = msg.authorization.concat([{account:account.name, permission:account.authority}])
+		});
+		morphScatterProps(transaction.data);
+		return transaction;
+	}
 }

@@ -77,12 +77,10 @@ export class Wallet {
 	//TODO: Change back to waterfall
 	encrypt(passkey){
 		this.keyPairs.map(x => (x.privateKey.length < 80) ? x.privateKey = AES.encrypt(x.privateKey, passkey) : x.privateKey)
-		// this.keyPairs.map(x => x.privateKey = WaterfallEncryption.encrypt(x.privateKey, passkey, AES.encrypt))
         this.editing = false;
 	}
 	decrypt(passkey){
 		this.keyPairs.map(x => x.privateKey = AES.decrypt(x.privateKey, passkey))
-		// this.keyPairs.map(x => x.privateKey = WaterfallEncryption.decrypt(x.privateKey, passkey, AES.decrypt))
 	}
 
 }

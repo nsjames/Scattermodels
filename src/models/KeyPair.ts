@@ -31,7 +31,7 @@ export class KeyPair {
 
 	static fromJson(json) {
 		let p = Object.assign(this.placeholder(), json);
-		if(json.hasOwnProperty('network')) p.network = Network.fromJson(json.currentNetwork);
+		if(json.hasOwnProperty('network')) p.network = Network.fromJson(json.network);
 		return p;
 	}
 
@@ -43,7 +43,11 @@ export class KeyPair {
 	}
 
     getHighestAuthority(){
-		return (this.accounts.length) ? this.accounts[0].authority.toLowerCase() : 'No account found';
+		return (this.accounts.length) ? this.sortAccounts(this.accounts)[0].authority.toLowerCase() : 'No account found';
+	}
+
+    getHighestAuthorityName(){
+		return (this.accounts.length) ? this.sortAccounts(this.accounts)[0].name : 'No account found';
 	}
 
 	hasOwnerAuthority(){
@@ -60,6 +64,8 @@ export class KeyPair {
             return (Authorities[a.authority.toLowerCase()] || 0) < Authorities[b.authority.toLowerCase()] || 0;
         });
 	}
+
+	truncateKey(){ return (this.publicKey.length) ? this.publicKey.substr(0, 3) + '.....' + this.publicKey.substr(this.publicKey.length -4) : ''; }
 }
 
 const Authorities = {owner:2, active:1};

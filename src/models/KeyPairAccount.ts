@@ -18,6 +18,8 @@ export class KeyPairAccount {
         return Object.assign(this.placeholder(), json);
     }
 
+    print(){ return `${this.name}@${this.authority}`; }
+
 }
 
 export default KeyPairAccount;
