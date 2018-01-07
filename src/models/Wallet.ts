@@ -1,6 +1,7 @@
 import RandomIdGenerator from '../cryptography/RandomIdGenerator';
 import AES from '../cryptography/AES';
 import KeyPair from "./KeyPair";
+import {Network} from "./Network";
 
 export class Wallet {
 	name:string;
@@ -58,7 +59,7 @@ export class Wallet {
 	clone(){ return Wallet.fromJson(Object.assign({}, this)); }
 	getDefaultKeyPair(){ return (this.defaultPublicKey.length) ? this.keyPairs.filter(x => x.publicKey === this.defaultPublicKey)[0] : this.keyPairs[0]; }
 	setDefaultKeyPair(keyPair){ this.defaultPublicKey = keyPair.publicKey; }
-	hasKey(publicKey){ return this.keyPairs.filter(x => x.publicKey === publicKey).length > 0 }
+	hasKey(publicKey, network){ return this.keyPairs.filter(x => x.publicKey === publicKey && x.network.unique() === network.unique()).length > 0 }
 	hasUnreclaimedKey(){ return this.keyPairs.filter(x => !x.reclaimed).length }
 	hasAccount(accounts){
 		let acc = accounts.map(z => `${z.name}::${z.permission}`);
@@ -81,6 +82,10 @@ export class Wallet {
 	}
 	decrypt(passkey){
 		this.keyPairs.map(x => x.privateKey = AES.decrypt(x.privateKey, passkey))
+	}
+
+	keyPairsInNetwork(network:Network){
+		return this.keyPairs.filter(x => `${x.network.host}:${x.network.port}` === `${network.host}:${network.port}`)
 	}
 
 }

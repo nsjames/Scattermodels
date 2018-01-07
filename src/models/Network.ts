@@ -31,6 +31,7 @@ export class Network {
 
 	toEndpoint(){ return `http://${this.host}:${this.port}` }
 	clone(){ return Network.fromJson(Object.assign({}, this)); }
+	unique(){ return `${this.host}:${this.port}`; }
 }
 
 export default Network;

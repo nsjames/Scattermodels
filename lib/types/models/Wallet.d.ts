@@ -1,4 +1,5 @@
 import KeyPair from "./KeyPair";
+import { Network } from "./Network";
 export declare class Wallet {
     name: string;
     keyPairs: Array<KeyPair>;
@@ -17,11 +18,12 @@ export declare class Wallet {
     clone(): any;
     getDefaultKeyPair(): KeyPair;
     setDefaultKeyPair(keyPair: any): void;
-    hasKey(publicKey: any): boolean;
+    hasKey(publicKey: any, network: any): boolean;
     hasUnreclaimedKey(): number;
     hasAccount(accounts: any): number;
     prepareForSaving(): void;
     encrypt(passkey: any): void;
     decrypt(passkey: any): void;
+    keyPairsInNetwork(network: Network): KeyPair[];
 }
 export default Wallet;

@@ -1,6 +1,6 @@
 export const NetworkMessageTypes = {
 	ERROR:'error',
-	REQUEST_PERMISSIONS:'rq_perm',
+	REQUEST_IDENTITY:'rq_ident',
 	PROVE_IDENTITY:'prv_ident',
 	REQUEST_SIGNATURE:'rq_sig',
 	SIGN_WITH_ANY:'sign_any'

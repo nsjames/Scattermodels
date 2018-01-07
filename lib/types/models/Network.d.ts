@@ -8,5 +8,6 @@ export declare class Network {
     static testNet(): Network;
     toEndpoint(): string;
     clone(): Network;
+    unique(): string;
 }
 export default Network;
