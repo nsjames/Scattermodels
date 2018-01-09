@@ -5,6 +5,7 @@ export declare class KeyPair {
     privateKey: string;
     accounts: Array<KeyPairAccount>;
     network: Network;
+    balance: number;
     reclaimed: boolean;
     removed: boolean;
     constructor();

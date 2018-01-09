@@ -6,6 +6,7 @@ export class KeyPair {
 	privateKey:string;
 	accounts:Array<KeyPairAccount>;
 	network:Network;
+	balance:number;
 	reclaimed:boolean;
 	removed:boolean;
 	
@@ -14,6 +15,7 @@ export class KeyPair {
         this.privateKey = null;
         this.accounts = null;
         this.network = null;
+        this.balance = null;
 		this.reclaimed = null;
 
         this.removed = null;
@@ -25,6 +27,7 @@ export class KeyPair {
 		p.privateKey = '';
 		p.accounts = [];
 		p.network = Network.placeholder();
+		p.balance = 0;
 		p.reclaimed = false;
 		return p;
 	}
