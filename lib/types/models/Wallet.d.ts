@@ -21,6 +21,6 @@ export declare class Wallet {
     encrypt(passkey: any): void;
     keyPairsInNetwork(network: Network): KeyPair[];
     networkBalance(network: any): number;
-    networkAccountMap(): any[];
+    networkAccountMap(inNetwork?: any): any[];
 }
 export default Wallet;

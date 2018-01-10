@@ -5,7 +5,6 @@ export declare class Network {
     constructor(name: string, host: string, port: number);
     static placeholder(): Network;
     static fromJson(json: any): Network;
-    static testNet(): Network;
     toEndpoint(): string;
     clone(): Network;
     unique(): string;

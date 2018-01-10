@@ -9,6 +9,8 @@ export class KeyPair {
 	balance:number;
 	reclaimed:boolean;
 	removed:boolean;
+
+	selfStake:boolean = false;
 	
 	constructor(){
         this.publicKey = null;
@@ -69,6 +71,12 @@ export class KeyPair {
 	}
 
 	truncateKey(){ return (this.publicKey.length) ? this.publicKey.substr(0, 3) + '.....' + this.publicKey.substr(this.publicKey.length -4) : ''; }
+
+	prepareForSaving(){
+		delete (<any>this).tempName;
+		delete (<any>this).selfStakeAccountName;
+		delete (<any>this).selfStakePrivateKey;
+	}
 }
 
 const Authorities = {owner:2, active:1};

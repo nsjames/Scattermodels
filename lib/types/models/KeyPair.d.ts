@@ -8,6 +8,7 @@ export declare class KeyPair {
     balance: number;
     reclaimed: boolean;
     removed: boolean;
+    selfStake: boolean;
     constructor();
     static placeholder(): KeyPair;
     static fromJson(json: any): any;
@@ -21,5 +22,6 @@ export declare class KeyPair {
     setAccounts(accounts: any): void;
     sortAccounts(accounts: any): any;
     truncateKey(): string;
+    prepareForSaving(): void;
 }
 export default KeyPair;

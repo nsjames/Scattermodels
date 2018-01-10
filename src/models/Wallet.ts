@@ -49,13 +49,16 @@ export class Wallet {
 	stopEditing(){ this.editing = false; }
 	clone(){ return Wallet.fromJson(Object.assign({}, this)); }
 	hasKey(publicKey, network){ return this.keyPairs.filter(x => x.publicKey === publicKey && x.network.unique() === network.unique()).length > 0 }
-	hasUnreclaimedKey(){ return this.keyPairs.filter(x => !x.reclaimed).length }
+	hasUnreclaimedKey(){ return this.keyPairs.filter(x => !x.reclaimed && !x.selfStake).length }
 	hasAccount(accounts){
 		return this.keyPairs.filter(x => {
 			return x.accounts.map(z => `${z.name}::${z.authority}`).filter(z => accounts.map(z => `${z.name}::${z.permission}`).indexOf(z) > -1).length
 		}).length
 	}
-	prepareForSaving(){ this.keyPairs = this.keyPairs.filter(x => !x.removed); }
+	prepareForSaving(){
+		this.keyPairs = this.keyPairs.filter(x => !x.removed);
+		this.keyPairs.map(kp => kp.prepareForSaving());
+	}
 	decrypt(passkey){ this.keyPairs.map(x => x.privateKey = AES.decrypt(x.privateKey, passkey)) }
 	encrypt(passkey){
 		this.keyPairs.map(x => (x.privateKey.length < 80) ? x.privateKey = AES.encrypt(x.privateKey, passkey) : x.privateKey)
@@ -64,8 +67,9 @@ export class Wallet {
 
 	keyPairsInNetwork(network:Network){ return this.keyPairs.filter(x => `${x.network.host}:${x.network.port}` === `${network.host}:${network.port}`) }
 	networkBalance(network){ return this.keyPairsInNetwork(network).map(kp => kp.balance).reduce((a,b) => a+b, 0); }
-	networkAccountMap(){
-		return this.keyPairs.map(x => { return {network:x.network, accounts:x.accounts.map(x => x.name).reduce((a,b) => (a.indexOf(b) > -1) ? a : a.concat(b), [])}})
+	networkAccountMap(inNetwork = null){
+		const keypairs = (inNetwork) ? this.keyPairsInNetwork(inNetwork) : this.keyPairs;
+		return keypairs.map(x => { return {network:x.network, accounts:x.accounts.map(x => x.name).reduce((a,b) => (a.indexOf(b) > -1) ? a : a.concat(b), [])}})
 			.reduce((a,b) => {
 				if(!a[b.network.toEndpoint()]) a[b.network.toEndpoint()] = [];
 				a[b.network.toEndpoint()].push(b.accounts);
