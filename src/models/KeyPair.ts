@@ -70,7 +70,7 @@ export class KeyPair {
         });
 	}
 
-	truncateKey(){ return (this.publicKey.length) ? this.publicKey.substr(0, 3) + '.....' + this.publicKey.substr(this.publicKey.length -4) : ''; }
+	truncateKey(){ return (this.publicKey.length) ? this.publicKey.substr(0, 8) + '.....' + this.publicKey.substr(this.publicKey.length -4) : ''; }
 
 	prepareForSaving(){
 		delete (<any>this).tempName;
