@@ -1,9 +1,10 @@
 import { Network } from "./Network";
 import { KeyPairAccount } from "./KeyPairAccount";
 export declare class Identity {
+    name: string;
     account: KeyPairAccount;
     network: Network;
-    name: string;
+    fullName: string;
     email: string;
     phone: number;
     age: number;

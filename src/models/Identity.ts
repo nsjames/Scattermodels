@@ -1,7 +1,10 @@
 import {Network} from "./Network";
 import {KeyPairAccount} from "./KeyPairAccount";
+import RandomIdGenerator from '../cryptography/RandomIdGenerator';
 
 export class Identity {
+
+	uniqueKey:string;
 
 	name:string;
 
@@ -24,6 +27,8 @@ export class Identity {
 
 	public static placeholder(){
 		let p = new Identity();
+
+		p.uniqueKey = RandomIdGenerator.generate(80);
 
 		p.name = '';
 

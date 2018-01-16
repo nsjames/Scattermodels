@@ -1,6 +1,8 @@
 import Wallet from "./Wallet";
+import { Identity } from "./Identity";
 export declare class Keychain {
     wallets: Array<Wallet>;
+    identities: Array<Identity>;
     locked: boolean;
     constructor();
     static placeholder(): Keychain;
