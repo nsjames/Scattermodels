@@ -3,11 +3,13 @@ import {KeyPairAccount} from "./KeyPairAccount";
 
 export class Identity {
 
+	name:string;
+
 	// Associated account
 	account:KeyPairAccount;
 	network:Network;
 
-	name:string;
+	fullName:string;
 	email:string;
 	phone:number;
 	age:number;
@@ -22,10 +24,12 @@ export class Identity {
 
 	public static placeholder(){
 		let p = new Identity();
+
+		p.name = '';
+
 		p.account = null;
 		p.network = null;
 
-		p.name = '';
 		p.email = '';
 		p.phone = -1;
 		p.age = -1;
@@ -68,7 +72,7 @@ export class Identity {
 
 	public shippingInfo(){
 		return `
-		Full Name: ${this.name}\r\n
+		Full Name: ${this.fullName}\r\n
 		Phone Number: ${this.phone}\r\n
 		Address: ${this.address} \r\n
 		City: ${this.city}\r\n
