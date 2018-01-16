@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack --watch"
   },
-  "author": "",
+  "author": "nsjames",
   "license": "ISC",
   "dependencies": {
     "@types/chrome": "0.0.57",

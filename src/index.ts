@@ -12,6 +12,7 @@ export {Wallet} from './models/Wallet'
 export {NetworkMessage} from './models/NetworkMessage'
 export {NetworkMessageTypes} from './models/NetworkMessageTypes'
 export {ScatterError} from './models/ScatterError'
+export {Identity} from './models/Identity'
 
 export {CurrencyAction} from './models/CurrencyAction';
 export {ContractAuthorization} from './models/ContractAuthorization';
